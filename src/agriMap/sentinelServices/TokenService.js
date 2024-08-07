@@ -1,5 +1,4 @@
-const TOKEN_URL =
-  "https://services.sentinel-hub.com/auth/realms/main/protocol/openid-connect/token";
+const TOKEN_URL = "https://sentinal-node-services.onrender.com/sentinelToken";
 const CLIENT_ID = "23b43d6f-2bbd-47b2-95be-5027d44d2d45";
 const CLIENT_SECRET = "tWrGsKN93JHMVdi13aSnJTT0hPHV9y7y";
 

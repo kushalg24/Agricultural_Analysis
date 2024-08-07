@@ -15,6 +15,13 @@ import OpenAI from "../../../images/OpenAI.png";
 import { useSelector } from "react-redux";
 import axioos from "../../../axiosInstance/axioos";
 
+import Sentinal_Hub_Api from "../../../images/sentinal_logo.png";
+
+
+
+
+
+
 const APP_SCHEMA_URL = "https://ig.aidtaas.com/tf-web/v1.0/64e1fd3d1443eb00018cc231/schemas/65e953b528ebd37244d9d4d3/instance?upsert=true"
 const POST_URL =
   "https://ig.aidtaas.com/tf-web/v1.0/64e1fd3d1443eb00018cc231/schemas/65e953b528ebd37244d9d4d3/instance?upsert=true";
@@ -154,14 +161,20 @@ setSelectedPlatformlocal({...selectedPlatform})
     }
     fetchData()
   },[])
-  console.log(schemaData,'sravan2');
-  const platformIcons={
-    "BigQuery":BigQuery,
-    "OKTA":OKTA,
-    "Snowflake":Snowflake,
-    "Azure ":Azure,
-    "OpenAI":OpenAI
-  }
+  
+
+
+
+
+    const platformIcons = {
+      "BigQuery": BigQuery,
+      "OKTA": OKTA,
+      "Snowflake": Snowflake,
+      "Azure ": Azure,
+      "OpenAI": OpenAI,
+      "Sentinal Hub Api": Sentinal_Hub_Api
+    };
+  
   let filteredPlatformNames = platformList.map(platform => platform.platform_name);
 
       const excludedPlatformNames = plList.map(pname => pname.platform_name);

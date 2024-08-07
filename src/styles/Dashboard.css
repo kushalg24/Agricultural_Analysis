@@ -1,0 +1,359 @@
+/* Hide scrollbar but keep the functionality */
+.dashboard-top-left-column::-webkit-scrollbar,
+.dashboard-top-right-column::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.dashboard-top-left-column::-webkit-scrollbar-thumb,
+.dashboard-top-right-column::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.dashboard-top-left-column::-webkit-scrollbar-track,
+.dashboard-top-right-column::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.dashboard-top-left-column,
+.dashboard-top-right-column {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.dashboard-top-left-column {
+  width: 100%;
+  border-radius: 4px;
+  padding: 16px;
+  height: 82vh;
+  overflow-y: scroll;
+  align-items: center;
+}
+
+.dashboard-top-right-column {
+  width: 25%;
+  height: 82vh;
+  overflow-y: scroll;
+}
+
+/* Rest of your styles */
+.Dashboard {
+  display: flex;
+}
+
+.iframe-1 {
+  width: 100%;
+  height: 100%;
+}
+
+#platform_names {
+  margin-left: 40%;
+  border: none;
+  width: 25%;
+  cursor: pointer;
+}
+
+.dashboard-top-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.dasboard-button {
+  width: calc(100vw - 128px);
+  margin: 2rem 2rem 0 auto;
+  background-color: #F9FBFA;
+}
+
+.dashboard-top-left-graph {
+  width: 33%;
+  border: 1px solid #e0e8f8;
+  background-color: white;
+  margin-bottom: 0.2em;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  text-align: center;
+  transition: width 0.3s ease;
+}
+
+.expanded {
+  transition: width 0.3s ease;
+}
+
+.graph-title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.gridchild {
+  border: 1px solid cyan;
+  box-shadow: 0px 2px 5px -1px rgba(0, 30, 43, 0.22);
+  border-color: #889397;
+  border-radius: 1rem;
+  position: relative;
+  background-color: white;
+}
+
+.gridchild:hover #dragme {
+  display: block;
+}
+
+#dragme {
+  position: absolute;
+  left: 0px;
+  z-index: 10;
+  display: none;
+}
+
+.layout {}
+
+.dashboard-top-right-graph-detail .graph-title {
+  font-weight: bold;
+}
+
+.dashboard-top-left-graph-1,
+.dashboard-top-left-graph-2,
+.dashboard-top-right-graph-1,
+.dashboard-top-right-graph-2 {
+  border: 1px solid #e0e8f8;
+  border-radius: 4px;
+  padding: 16px;
+  min-height: 300px;
+  margin: 30px 0;
+}
+
+.dashboard-top-middle-column > * {
+  min-height: 688px;
+}
+
+.dashboard-bottom-row {
+  min-width: 100vw;
+  padding: 16px 38px;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-bottom-left,
+.dashboard-bottom-right {
+  width: 898px;
+  border: 1px solid #e0e8f8;
+  border-radius: 4px;
+  padding: 16px;
+  min-height: 300px;
+}
+
+.dashboard-bottom-right {
+  min-width: 431px;
+  width: 30%;
+}
+
+.dashboard-title {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+#dashboard-top-right-column-bottom-row {
+  position: relative;
+  right: 17vw;
+}
+
+.dashboard-top-left-graph:nth-child(2n-1) {}
+
+#less-width:first-child {
+  width: 61%;
+}
+
+#less-width:nth-child(2n) {
+  width: 38%;
+}
+
+#less-width {
+  width: 100%;
+}
+
+.dashboard-top-left-graph:first-child {
+  width: 100%;
+}
+
+#line1 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.typewriter p {
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  border-right: .15em solid orange;
+  animation: typing1 4s steps(40, end) forwards, blink-caret 2s step-end infinite;
+}
+
+#line1 {
+  width: 0;
+  opacity: 0;
+  animation: typing1 4s steps(40, end) forwards;
+}
+
+#line2 {
+  width: 0;
+  opacity: 0;
+  border-right: none;
+  animation: typing2 4s steps(30, end) forwards, blink-caret-2 2s step-end infinite;
+  animation-delay: 2s;
+  border-right: .15em solid orange;
+}
+
+@keyframes typing1 {
+  from { width: 0 }
+  to { width: 100% }
+  100% { opacity: 1; }
+}
+
+@keyframes typing2 {
+  from { width: 0 }
+  to { width: 100% }
+  100% { opacity: 1; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: transparent; }
+}
+
+@keyframes blink-caret-2 {
+  from, to { border-color: transparent }
+  50% { border-color: transparent; }
+}
+
+.visibleSpan1 {
+  position: absolute;
+  top: 21.5%;
+  left: 62.5%;
+  color: white;
+  font-size: x-large;
+}
+
+@keyframes pulse {
+  to { opacity: 1; }
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.hiddenSpan1 {
+  position: absolute;
+  top: 81.5%;
+  left: 58%;
+  color: white;
+  font-size: x-large;
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animatedDiv {
+  position: absolute;
+  animation: slideFromRight 0.5s ease-in-out;
+}
+
+.graph_modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.graph-modal-content {
+  background-color: #fefefe;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  height: 200px;
+  width: 400px;
+}
+
+.btnGroups {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.closebtn1 {
+  padding: 6px;
+  background-color: #EFEFEF;
+  color: #003399;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actionbtn1 {
+  padding: 6px;
+  background-color: #003399;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.textWrapping {
+  text-align: center;
+}
+
+.textWrap1 {
+  text-wrap: balance;
+}
+
+.iframeContainer {
+  position: relative;
+  z-index: 100;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.callToActionBtn {
+  padding: 4px;
+  background-color: #003399;
+  color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.descriptionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

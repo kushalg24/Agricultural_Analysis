@@ -1,0 +1,19 @@
+.custom-scrollbar {
+    scrollbar-color: #999999 #f0f0f0;
+    overflow: auto;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 20px; /* Set the width of the scrollbar */
+    height: 20px; /* Set the height of the scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #999999;
+    border-radius: 6px; /* Set the border radius of the scrollbar thumb */
+    border: 2px solid #f0f0f0;
+  }  

@@ -1,0 +1,54 @@
+.table-container {
+    overflow-x: auto;
+ 
+  }
+  
+  /* Table */
+ .mappertable table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Table header */
+  .mappertable th {
+    background-color:rgb(1, 89, 161);
+    color: whitesmoke;
+    font-weight: bold;
+    text-align: left;
+    /* padding: 12px; */
+  }
+  
+  /* Table body */
+  .mappertable td {
+    /* padding: 10px; */
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  /* Alternate row background color */
+  .mappertable tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Hover effect */
+  .mappertable tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Input styles */
+  .mappertable input[type="text"],
+  .mappertable input[type="checkbox"],
+  .mappertable select {
+    width: 100%;
+    /* padding: 8px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .mappertable input[type="checkbox"] {
+    width: auto;
+  }
+  

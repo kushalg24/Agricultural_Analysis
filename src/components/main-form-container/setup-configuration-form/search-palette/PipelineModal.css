@@ -1,0 +1,27 @@
+.pipeline-modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.316);
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  
+  .pipeline-modal {
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    position: relative;
+    top: 20px;
+    width: 85vw;
+    margin: auto;
+    height: 95vh;
+    z-index: 1;
+    overflow-y: scroll;
+  }
+
+  .pipeline-modal-close-button{
+    padding: 7px;
+    border: none;
+    border-radius: 7px;
+    font-size: 18px;
+  }

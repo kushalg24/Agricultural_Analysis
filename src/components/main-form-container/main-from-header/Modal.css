@@ -1,0 +1,19 @@
+.modal1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.4); /* semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:300px;
+  width: 300px;
+}

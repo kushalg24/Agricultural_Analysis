@@ -1,0 +1,106 @@
+.analyticsQueriesCardContainer {
+  overflow-y: scroll;
+  height: calc(100vh - 186px);
+  margin-top: 6%;
+}
+
+.headingAqs{
+  /* margin-left: 5%; */
+  margin-top: 2%;
+  /* color: #000; */
+	font-family: Acherus Grotesque;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 22px;
+}
+
+.allCardsContainer {
+  margin-bottom: 10px;
+
+}
+
+.cardContainerAqs {
+  width: 100%;
+  height: 4vh;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 1rem 2rem;
+  background: #fff;
+  /* margin-bottom: 10px; */
+  overflow: hidden;
+  color: #2a333e;
+  font-family: Acherus Grotesque;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+.even-bg {
+  background-color: rgba(247, 247, 247, 1);
+}
+.scrollbar::-webkit-scrollbar {
+	width: 6px;
+	height: 5px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+	height: 10px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+	background-color: #f0f0f0;
+	height: 10px;
+  }
+
+
+  .tabs1 {
+    display: flex;
+  }
+  
+  .tab1 {
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    /* background-color: #f0f0f0; */
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: Acherus Grotesque;
+
+  }
+  
+  .tab1:last-child {
+    margin-right: 0;
+  }
+  
+  .active-tab1 {
+    padding: 10px 20px;
+    margin-right: 5px;
+    background-color:#003399;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+  .tab1-content {
+    border: 1px solid #ccc;
+    border-width:2px 0px 0px 0px;
+    border-radius: 0 0 5px 5px;
+    padding-top: 8px;
+    margin-top: -1px;
+    font-style: normal;
+    font-size:15px;
+  }
+  
+  .content1 {
+    display: block;
+  }
+  

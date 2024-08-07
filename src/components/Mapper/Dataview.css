@@ -1,0 +1,33 @@
+.resizer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: col-resize;
+    user-select: none;
+    touch-action: none;
+    right: 0;
+  }
+  .resizer.isResizing {
+    background: blue;
+    opacity: 1;
+  
+  }
+  .datacomponent th{
+position: relative;
+background-color: #003399;
+color: white;
+  }
+  .datacomponent table{
+ 
+        border-collapse: collapse;
+      
+  
+  }
+  .datacomponent td{
+    color: whitesmoke;
+    background-color: black;
+    border: 1px dashed white;
+  }
+  

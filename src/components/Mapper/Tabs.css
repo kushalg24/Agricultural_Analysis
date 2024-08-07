@@ -1,0 +1,49 @@
+.tabs {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  
+  .tab-buttons {
+    display: flex;
+  }
+  
+  .tab-buttons button {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab-buttons button.active {
+    border-bottom: 2px solid blue;
+  }
+  
+  .tab-content {
+    /* padding: 20px; */
+   flex-grow: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: relative;
+  }
+  #execute{
+    position: sticky;
+    padding: 4px;
+    color: white;
+    background-color:rgb(26, 115, 232);;
+    border-radius: 3px;
+    outline: none;
+    border:none;
+    margin-right: 10px;
+    height: 30px;
+  }
+  .ace_editor, .ace_editor *{
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    }
+    

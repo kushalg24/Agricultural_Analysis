@@ -1,0 +1,22 @@
+.table-container {
+    /* max-height: 300px; Set the max height of the table container */
+    overflow: auto; /* Enable scrolling if the content overflows */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

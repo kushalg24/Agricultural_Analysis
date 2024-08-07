@@ -12,6 +12,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "1",
+    ndviImage: "2024-07-24T13-27-58-273Z",
+    trueColorImage: "2024-07-24T09-55-51-612Z",
   },
   2: {
     coordinates: [
@@ -26,6 +28,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "2",
+    ndviImage: "2024-07-24T09-55-56-255Z",
+    trueColorImage: "2024-07-24T09-55-54-970Z",
   },
   3: {
     coordinates: [
@@ -42,6 +46,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "3",
+    ndviImage: "2024-07-24T09-56-14-999Z",
+    trueColorImage: "2024-07-24T09-56-01-569Z",
   },
   4: {
     coordinates: [
@@ -57,6 +63,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "4",
+    ndviImage: "2024-07-24T09-56-18-607Z",
+    trueColorImage: "2024-07-24T09-56-04-555Z",
   },
   5: {
     coordinates: [
@@ -71,6 +79,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "5",
+    ndviImage: "2024-07-24T09-56-26-888Z",
+    trueColorImage: "2024-07-24T09-56-08-530Z",
   },
   6: {
     coordinates: [
@@ -85,6 +95,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "6",
+    ndviImage: "2024-07-24T12-44-56-394Z",
+    trueColorImage: "2024-07-24T09-56-17-188Z",
   },
   7: {
     coordinates: [
@@ -99,6 +111,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "7",
+    ndviImage: "2024-07-24T12-45-10-531Z",
+    trueColorImage: "2024-07-24T12-44-58-642Z",
   },
   8: {
     coordinates: [
@@ -114,6 +128,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "8",
+    ndviImage: "2024-07-24T12-45-19-060Z",
+    trueColorImage: "2024-07-24T12-45-01-661Z",
   },
   9: {
     coordinates: [
@@ -129,6 +145,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "9",
+    ndviImage: "2024-07-24T13-22-55-755Z",
+    trueColorImage: "2024-07-24T12-45-12-281Z",
   },
   10: {
     coordinates: [
@@ -143,6 +161,8 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "10",
+    ndviImage: "2024-07-24T13-22-59-490Z",
+    trueColorImage: "2024-07-24T13-48-09-535Z",
   },
   11: {
     coordinates: [
@@ -157,5 +177,7 @@ export const surveyNumbers = {
       ],
     ],
     surveyNumber: "11",
+    ndviImage: "2024-07-24T13-27-58-273Z",
+    trueColorImage: "2024-07-24T13-48-16-934Z",
   },
 };

@@ -1,6 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Modal = ({ isOpen, onClose, surveyData }) => {
+  const [ndviImageUrl, setNdviImageUrl] = useState(null);
+  const [trueColorImageUrl, setTrueColorImageUrl] = useState(null);
+  const [statistics, setStatistics] = useState(null);
+
+  const fetchImagesAndStatistics = async (coordinates) => {
+    try {
+      let updatedCoor = coordinates[0];
+      const ndviResponse = await axios.post(
+        "https://sentinal-node-services.onrender.com/sentinelNdviImage",
+        { coordinates: updatedCoor },
+        { responseType: "blob" }
+      );
+    //   console.log(ndviResponse, "ndviResponse");
+        const trueColorResponse = await axios.post(
+          "https://sentinal-node-services.onrender.com/sentinelTrueColorImage",
+          { coordinates: updatedCoor },
+          { responseType: "blob" }
+        );
+        const statisticsResponse = await axios.post(
+          "https://sentinal-node-services.onrender.com/sentinelStatistics",
+          { coordinates: updatedCoor }
+        );
+
+      // Convert the NDVI image response to a URL
+      const ndviImageBlob = ndviResponse.data;
+      const ndviImageUrl = URL.createObjectURL(ndviImageBlob);
+      setNdviImageUrl(ndviImageUrl);
+      
+	  const trueColorImageBlob = trueColorResponse.data;
+    const trueColorImageUrl = URL.createObjectURL(trueColorImageBlob);
+      setTrueColorImageUrl(trueColorImageUrl);
+      setStatistics(statisticsResponse.data.stats);
+    } catch (error) {
+      console.error("Error fetching images and statistics:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && surveyData) {
+      fetchImagesAndStatistics(surveyData.coordinates);
+    }
+  }, [isOpen, surveyData]);
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
@@ -25,8 +68,8 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
   if (!isOpen || !surveyData) return null;
 
   // Construct dynamic paths for the images
-  const ndviImagePath = require(`../sampleImages/ndviImages/ndvi-${surveyData.ndviImage}.jpg`);
-  const trueColorImagePath = require(`../sampleImages/trueColorImages/truecolor-${surveyData.trueColorImage}.png`);
+  //   const ndviImagePath = require(`../sampleImages/ndviImages/ndvi-${surveyData.ndviImage}.jpg`);
+  //   const trueColorImagePath = require(`../sampleImages/trueColorImages/truecolor-${surveyData.trueColorImage}.png`);
 
   return (
     <div
@@ -62,83 +105,109 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
               <p className="text-base font-bold text-center">
                 True Color Image
               </p>
-              <img
+              {/* <img
                 src={trueColorImagePath}
                 alt="True Color Image"
                 className="w-full rounded-lg"
-              />
+              /> */}
+              {trueColorImageUrl ? (
+                <img
+                  src={trueColorImageUrl}
+                  alt="True Color Image"
+                  className="w-full rounded-lg"
+                />
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
             <div className="w-1/2 h-full">
               <p className="text-base font-bold text-center">NDVI Image</p>
-              <img
+              {/* <img
                 src={ndviImagePath}
                 alt="NDVI Image"
                 className="w-full rounded-lg"
-              />
+              /> */}
+              {ndviImageUrl ? (
+                <img
+                  src={ndviImageUrl}
+                  alt="NDVI Image"
+                  className="w-full rounded-lg"
+                />
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
           </div>
           <div className="w-full p-4 overflow-y-auto">
             <h2 className="text-xl font-bold text-center pb-2">Crop Details</h2>
-            <div className="w-full flex flex-row justify-evenly p-4 gap-2">
-              <ul className="space-y-2">
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">NDVI_Min: </strong>
-                    <i className="text-gray-600">{getRandomNumber(0, 1)}</i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">NDVI_Max: </strong>
-                    <i className="text-gray-600">{getRandomNumber(0, 1)}</i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">NDVI_Mean: </strong>
-                    <i className="text-gray-600">{getRandomNumber(0, 1)}</i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">StDev: </strong>
-                    <i className="text-gray-600">{getRandomNumber(0, 0.1)}</i>
-                  </p>
-                </li>
-              </ul>
-              <ul className="space-y-2">
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">Yield in Tons: </strong>
-                    <i className="text-gray-600">
-                      {(Math.random() * 5).toFixed(2)}
-                    </i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">
-                      Moisture Content in Percentage:{" "}
-                    </strong>
-                    <i className="text-gray-600">{getRandomNumber(10, 20)}</i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">Cultivated Land: </strong>
-                    <i className="text-gray-600">{getRandomNumber(70, 100)}%</i>
-                  </p>
-                </li>
-                <li>
-                  <p className="mt-1">
-                    <strong className="text-gray-800">
-                      Age of Crop in Months:{" "}
-                    </strong>
-                    <i className="text-gray-600">{getRandomNumber(1, 12)}</i>
-                  </p>
-                </li>
-              </ul>
-            </div>
+            {statistics ? (
+              <div className="w-full flex flex-row justify-evenly p-4 gap-2">
+                <ul className="space-y-2">
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">NDVI_Min: </strong>
+                      <i className="text-gray-600">{statistics.min}</i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">NDVI_Max: </strong>
+                      <i className="text-gray-600">{statistics.max}</i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">NDVI_Mean: </strong>
+                      <i className="text-gray-600">{statistics.mean}</i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">StDev: </strong>
+                      <i className="text-gray-600">{statistics.stDev}</i>
+                    </p>
+                  </li>
+                </ul>
+                <ul className="space-y-2">
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">Yield in Tons: </strong>
+                      <i className="text-gray-600">
+                        {(Math.random() * 5).toFixed(2)}
+                      </i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">
+                        Moisture Content in Percentage:{" "}
+                      </strong>
+                      <i className="text-gray-600">{getRandomNumber(10, 20)}</i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">
+                        Cultivated Land:{" "}
+                      </strong>
+                      <i className="text-gray-600">
+                        {getRandomNumber(70, 100)}%
+                      </i>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="mt-1">
+                      <strong className="text-gray-800">
+                        Age of Crop in Months:{" "}
+                      </strong>
+                      <i className="text-gray-600">{getRandomNumber(1, 12)}</i>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </div>
       </div>

@@ -108,8 +108,9 @@ export default function LocationForm({ setGeoJsonData, setSurveyGeoJsonData }) {
       setSurveyGeoJsonData(surveyGeoJson);
 
       const surveyData = {
-        ndviImage: `/ndviImages/ndvi-${survey.ndviImage}.jpg`,
-        trueColorImage: `/trueColorImages/truecolor-${survey.trueColorImage}.png`,
+        coordinates: survey.coordinates,
+        // ndviImage: `/ndviImages/ndvi-${survey.ndviImage}.jpg`,
+        // trueColorImage: `/trueColorImages/truecolor-${survey.trueColorImage}.png`,
         ...survey,
       };
 

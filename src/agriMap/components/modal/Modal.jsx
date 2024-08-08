@@ -1,49 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 
-const Modal = ({ isOpen, onClose, surveyData }) => {
-  const [ndviImageUrl, setNdviImageUrl] = useState(null);
-  const [trueColorImageUrl, setTrueColorImageUrl] = useState(null);
-  const [statistics, setStatistics] = useState(null);
-
-  const fetchImagesAndStatistics = async (coordinates) => {
-    try {
-      let updatedCoor = coordinates[0];
-      const ndviResponse = await axios.post(
-        "https://sentinal-node-services.onrender.com/sentinelNdviImage",
-        { coordinates: updatedCoor },
-        { responseType: "blob" }
-      );
-    //   console.log(ndviResponse, "ndviResponse");
-        const trueColorResponse = await axios.post(
-          "https://sentinal-node-services.onrender.com/sentinelTrueColorImage",
-          { coordinates: updatedCoor },
-          { responseType: "blob" }
-        );
-        const statisticsResponse = await axios.post(
-          "https://sentinal-node-services.onrender.com/sentinelStatistics",
-          { coordinates: updatedCoor }
-        );
-
-      // Convert the NDVI image response to a URL
-      const ndviImageBlob = ndviResponse.data;
-      const ndviImageUrl = URL.createObjectURL(ndviImageBlob);
-      setNdviImageUrl(ndviImageUrl);
-      
-	  const trueColorImageBlob = trueColorResponse.data;
-    const trueColorImageUrl = URL.createObjectURL(trueColorImageBlob);
-      setTrueColorImageUrl(trueColorImageUrl);
-      setStatistics(statisticsResponse.data.stats);
-    } catch (error) {
-      console.error("Error fetching images and statistics:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen && surveyData) {
-      fetchImagesAndStatistics(surveyData.coordinates);
-    }
-  }, [isOpen, surveyData]);
+const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
@@ -65,11 +22,9 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
     return (Math.random() * (max - min) + min).toFixed(4);
   }
 
-  if (!isOpen || !surveyData) return null;
+  if (!isOpen || !surveyData || !modalData) return null;
 
-  // Construct dynamic paths for the images
-  //   const ndviImagePath = require(`../sampleImages/ndviImages/ndvi-${surveyData.ndviImage}.jpg`);
-  //   const trueColorImagePath = require(`../sampleImages/trueColorImages/truecolor-${surveyData.trueColorImage}.png`);
+  const { ndviImageUrl, trueColorImageUrl, statistics } = modalData;
 
   return (
     <div
@@ -105,11 +60,6 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
               <p className="text-base font-bold text-center">
                 True Color Image
               </p>
-              {/* <img
-                src={trueColorImagePath}
-                alt="True Color Image"
-                className="w-full rounded-lg"
-              /> */}
               {trueColorImageUrl ? (
                 <img
                   src={trueColorImageUrl}
@@ -122,11 +72,6 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
             </div>
             <div className="w-1/2 h-full">
               <p className="text-base font-bold text-center">NDVI Image</p>
-              {/* <img
-                src={ndviImagePath}
-                alt="NDVI Image"
-                className="w-full rounded-lg"
-              /> */}
               {ndviImageUrl ? (
                 <img
                   src={ndviImageUrl}
@@ -180,7 +125,7 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
                   <li>
                     <p className="mt-1">
                       <strong className="text-gray-800">
-                        Moisture Content in Percentage:{" "}
+                        Moisture Content in Percentage:
                       </strong>
                       <i className="text-gray-600">{getRandomNumber(10, 20)}</i>
                     </p>
@@ -188,7 +133,7 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
                   <li>
                     <p className="mt-1">
                       <strong className="text-gray-800">
-                        Cultivated Land:{" "}
+                        Cultivated Land:
                       </strong>
                       <i className="text-gray-600">
                         {getRandomNumber(70, 100)}%
@@ -198,7 +143,7 @@ const Modal = ({ isOpen, onClose, surveyData }) => {
                   <li>
                     <p className="mt-1">
                       <strong className="text-gray-800">
-                        Age of Crop in Months:{" "}
+                        Age of Crop in Months:
                       </strong>
                       <i className="text-gray-600">{getRandomNumber(1, 12)}</i>
                     </p>

@@ -1,23 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
-  
-  // useEffect hook to handle adding and removing a CSS class to the body element
+  const [randomData, setRandomData] = useState(null);
+
+   // useEffect hook to handle adding and removing a CSS class to the body element
   // when the modal is open or closed. This can be useful for preventing background
   // scrolling when the modal is open.
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
+
+      // Generate random data when the modal is opened
+      if (!randomData) {
+        setRandomData({
+          yieldInTons: (Math.random() * 5).toFixed(2),
+          moistureContent: getRandomNumber(10, 20),
+          cultivatedLand: getRandomNumber(70, 100),
+          cropAgeInMonths: getRandomNumber(1, 12),
+        });
+      }
     } else {
       document.body.classList.remove("modal-open");
+      setRandomData(null); // Clear random data when modal closes
     }
-    
-    // Cleanup function to remove the class when the component is unmounted
+
+     // Cleanup function to remove the class when the component is unmounted
     // or when the modal closes.
     return () => {
       document.body.classList.remove("modal-open");
     };
-  }, [isOpen]);
+  }, [isOpen, randomData]);
 
   // Handle background click to close the modal when the user clicks outside the modal content.
   const handleBackgroundClick = (event) => {
@@ -31,7 +43,7 @@ const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
     return (Math.random() * (max - min) + min).toFixed(4);
   }
 
-  // Return null (i.e., render nothing) if the modal is not open or if the required data is not available.
+  // Return null if the modal is not open or if the required data is not available.
   if (!isOpen || !surveyData || !modalData) return null;
 
   // Destructure modalData for easier access to the images and statistics.
@@ -68,14 +80,14 @@ const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
             ></path>
           </svg>
         </button>
-        
         {/* Modal content wrapper */}
         <div className="h-full flex flex-col">
-          
           {/* Section for displaying True Color and NDVI images */}
-          <div className="w-full  p-4 flex flex-row justify-evenly gap-2">
+          <div className="w-full p-4 flex flex-row justify-evenly gap-2">
             <div className="w-1/2 h-full">
-              <p className="text-base font-bold text-center">True Color Image</p>
+              <p className="text-base font-bold text-center">
+                True Color Image
+              </p>
               {trueColorImageUrl ? (
                 <img
                   src={trueColorImageUrl}
@@ -83,7 +95,7 @@ const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
                   className="w-full rounded-lg"
                 />
               ) : (
-                <p>Loading...</p> // Display loading message if the image is not available yet.
+                <p>Loading...</p>
               )}
             </div>
             <div className="w-1/2 h-full">
@@ -99,7 +111,6 @@ const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
               )}
             </div>
           </div>
-
           {/* Section for displaying crop details and statistics */}
           <div className="w-full p-4 overflow-y-auto">
             <h2 className="text-xl font-bold text-center pb-2">Crop Details</h2>
@@ -133,47 +144,51 @@ const Modal = ({ isOpen, onClose, surveyData, modalData }) => {
                   </li>
                 </ul>
 
-                {/* Randomly generated values for additional statistics (Yield, Moisture Content, etc.) */}
-                <ul className="space-y-2">
-                  <li>
-                    <p className="mt-1">
-                      <strong className="text-gray-800">Yield in Tons: </strong>
-                      <i className="text-gray-600">
-                        {(Math.random() * 5).toFixed(2)}
-                      </i>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="mt-1">
-                      <strong className="text-gray-800">
-                        Moisture Content in Percentage:
-                      </strong>
-                      <i className="text-gray-600">
-                        {getRandomNumber(10, 20)}
-                      </i>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="mt-1">
-                      <strong className="text-gray-800">
-                        Cultivated Land:
-                      </strong>
-                      <i className="text-gray-600">
-                        {getRandomNumber(70, 100)}%
-                      </i>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="mt-1">
-                      <strong className="text-gray-800">
-                        Age of Crop in Months:
-                      </strong>
-                      <i className="text-gray-600">
-                        {getRandomNumber(1, 12)}
-                      </i>
-                    </p>
-                  </li>
-                </ul>
+                {/* Display the stored random data */}
+                {randomData && (
+                  <ul className="space-y-2">
+                    <li>
+                      <p className="mt-1">
+                        <strong className="text-gray-800">
+                          Yield in Tons:{" "}
+                        </strong>
+                        <i className="text-gray-600">
+                          {randomData.yieldInTons}
+                        </i>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="mt-1">
+                        <strong className="text-gray-800">
+                          Moisture Content in Percentage:
+                        </strong>
+                        <i className="text-gray-600">
+                          {randomData.moistureContent}
+                        </i>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="mt-1">
+                        <strong className="text-gray-800">
+                          Cultivated Land:
+                        </strong>
+                        <i className="text-gray-600">
+                          {randomData.cultivatedLand}%
+                        </i>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="mt-1">
+                        <strong className="text-gray-800">
+                          Age of Crop in Months:
+                        </strong>
+                        <i className="text-gray-600">
+                          {randomData.cropAgeInMonths}
+                        </i>
+                      </p>
+                    </li>
+                  </ul>
+                )}
               </div>
             ) : (
               <p>Loading...</p> // Display loading message if statistics are not available yet.
